@@ -21,10 +21,10 @@ rawCapture = PiRGBArray(camera, size=(PICAM_WIDTH, PICAM_HEIGHT))
 time.sleep(0.2) # allow the camera to warmup
 
 
-cam2 = cv.VideoCapture(0)
+cam2 = cv.VideoCapture(1)
 cam2.set(cv.CAP_PROP_FRAME_WIDTH, 1920)
 cam2.set(cv.CAP_PROP_FRAME_HEIGHT, 1080)
-
+cam2.set(cv.CAP_PROP_BUFFERSIZE, 1)
 cv.namedWindow("frame_cam1", cv.WINDOW_AUTOSIZE);
 cv.namedWindow("frame_cam2", cv.WINDOW_AUTOSIZE);
 
