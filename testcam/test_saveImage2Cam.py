@@ -25,19 +25,22 @@ cam2 = cv.VideoCapture(0)
 cam2.set(cv.CAP_PROP_FRAME_WIDTH, 1920)
 cam2.set(cv.CAP_PROP_FRAME_HEIGHT, 1080)
 
-cv.namedWindow("frame_cam1", cv.WINDOW_NORMAL);
-cv.namedWindow("frame_cam2", cv.WINDOW_NORMAL);
+cv.namedWindow("frame_cam1", cv.WINDOW_AUTOSIZE);
+cv.namedWindow("frame_cam2", cv.WINDOW_AUTOSIZE);
 
 
 for frame in camera.capture_continuous(rawCapture, format="bgr", use_video_port=True):
     frame_cam1 = frame.array
     ret2, frame_cam2 = cam2.read()
-  
+    
+    #frame_cam1=cv.resize(frame_cam1,[frame_cam1.shape[1]//2,frame_cam1.shape[0]//2])
+    frame_cam2=cv.resize(frame_cam2,[frame_cam2.shape[1]//2,frame_cam2.shape[0]//2])
+
     # Display the resulting frame
     cv.imshow('frame_cam1', frame_cam1)
     cv.imshow('frame_cam2', frame_cam2)
 
-    key = cv.waitKey(10)
+    key = cv.waitKey(5)
 
     if key & 0xFF == ord('q'):
         break
